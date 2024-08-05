@@ -18,6 +18,13 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField ("String", "GCM_DEFAULT_SENDER_ID", "\"${project.findProperty("GCM_DEFAULT_SENDER_ID")}\"")
+        buildConfigField ("String", "GOOGLE_API_KEY", "\"${project.findProperty("GOOGLE_API_KEY")}\"")
+        buildConfigField ("String", "GOOGLE_APP_ID", "\"${project.findProperty("GOOGLE_APP_ID")}\"")
+        buildConfigField ("String", "GOOGLE_CRASH_REPORTING_API_KEY", "\"${project.findProperty("GOOGLE_CRASH_REPORTING_API_KEY")}\"")
+        buildConfigField ("String", "GOOGLE_STORAGE_BUCKET", "\"${project.findProperty("GOOGLE_STORAGE_BUCKET")}\"")
+        buildConfigField ("String", "PROJECT_ID", "\"${project.findProperty("PROJECT_ID")}\"")
+
     }
 
     buildTypes {
