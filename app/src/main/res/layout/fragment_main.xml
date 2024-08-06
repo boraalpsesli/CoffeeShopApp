@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Grab your frist coffie in this morning"
+                    android:text="Grab your first coffee of the day"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
