@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffeeshopapp.BaseFragment
 import com.example.coffeeshopapp.R
 import com.example.coffeeshopapp.adapter.CategoryAdapter
+import com.example.coffeeshopapp.adapter.PopularAdapter
 import com.example.coffeeshopapp.databinding.FragmentIntroBinding
 import com.example.coffeeshopapp.databinding.FragmentMainBinding
 import com.example.coffeeshopapp.viewmodel.MainViewModel
@@ -36,6 +37,7 @@ class MainFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initCategory()
+        initPopular()
     }
     private fun initCategory(){
         binding.progressBarCategory.visibility=View.VISIBLE
@@ -45,6 +47,15 @@ class MainFragment : BaseFragment() {
             binding.progressBarCategory.visibility=View.GONE
         })
         viewModel.loadCategory()
+    }
+    private fun initPopular(){
+        binding.progressBarPopular.visibility=View.VISIBLE
+        viewModel.popular.observe(viewLifecycleOwner, Observer {
+            binding.recyclerViewPopular.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            binding.recyclerViewPopular.adapter=PopularAdapter(it)
+            binding.progressBarPopular.visibility=View.GONE
+        })
+        viewModel.loadPopular()
     }
     companion object {
 
