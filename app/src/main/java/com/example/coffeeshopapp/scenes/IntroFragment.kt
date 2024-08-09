@@ -1,19 +1,16 @@
 package com.example.coffeeshopapp.scenes
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.navigation.fragment.findNavController
 import com.example.coffeeshopapp.BaseFragment
-import com.example.coffeeshopapp.R
 import com.example.coffeeshopapp.databinding.FragmentIntroBinding
 
 
 class IntroFragment : BaseFragment() {
-    private lateinit var binding:FragmentIntroBinding
+    private lateinit var binding: FragmentIntroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +22,7 @@ class IntroFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-       binding=FragmentIntroBinding.inflate(layoutInflater)
+        binding = FragmentIntroBinding.inflate(layoutInflater)
         return binding.root
     }
 

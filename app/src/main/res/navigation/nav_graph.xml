@@ -9,15 +9,49 @@
         android:id="@+id/introFragment"
         android:name="com.example.coffeeshopapp.scenes.IntroFragment"
         android:label="fragment_intro"
-        tools:layout="@layout/fragment_intro" >
+        tools:layout="@layout/fragment_intro">
 
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.coffeeshopapp.scenes.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+
+    </fragment>
     <action
         android:id="@+id/toMainFragment"
-        app:destination="@id/mainFragment" />
+        app:destination="@id/mainFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.coffeeshopapp.scenes.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+
+    </fragment>
+    <action
+        android:id="@+id/toDetails"
+        app:destination="@id/detailsFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.coffeeshopapp.scenes.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart">
+
+    </fragment>
+    <action
+        android:id="@+id/backToMain"
+        app:destination="@id/mainFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out" />
+    <action
+        android:id="@+id/toCart"
+        app:destination="@id/cartFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out" />
+
 </navigation>

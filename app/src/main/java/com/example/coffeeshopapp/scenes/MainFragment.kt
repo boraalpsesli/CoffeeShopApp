@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffeeshopapp.BaseFragment
 import com.example.coffeeshopapp.adapter.CategoryAdapter
@@ -37,6 +38,9 @@ class MainFragment : BaseFragment() {
         initCategory()
         initPopular()
         initOffers()
+        binding.cartBtn.setOnClickListener {
+            findNavController().navigate(CartFragmentDirections.toCart())
+        }
     }
 
     private fun initCategory() {
