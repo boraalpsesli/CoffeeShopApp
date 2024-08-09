@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,6 +15,7 @@ import com.example.coffeeshopapp.adapter.SizeAdapter
 import com.example.coffeeshopapp.databinding.FragmentDetailsBinding
 import com.example.coffeeshopapp.helper.ManagmentCart
 import com.example.coffeeshopapp.model.ItemsModel
+import com.example.coffeeshopapp.viewmodel.MainViewModel
 
 class DetailsFragment : BaseFragment() {
 
@@ -21,6 +23,7 @@ class DetailsFragment : BaseFragment() {
     private val binding get() = _binding!!
     private lateinit var item: ItemsModel
     private lateinit var managmentCart: ManagmentCart
+    private val viewModel = MainViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +36,10 @@ class DetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        item = arguments?.getParcelable("object")
-            ?: throw IllegalArgumentException("Item data is missing")
+        item = arguments?.getSerializable("object") as? ItemsModel ?: ItemsModel()
 
-        managmentCart = ManagmentCart(requireContext()) // Replace with actual initialization
+        managmentCart =
+            ManagmentCart(requireContext()) // Replace with actual initialization
 
         setupUI()
         initSizeList()
@@ -62,7 +65,7 @@ class DetailsFragment : BaseFragment() {
         binding.apply {
             titleTxt.text = item.title
             descriptionTxt.text = item.description
-            priceTxt.text = "$${item.price}"
+            priceTxt.text = "${item.price}"
             ratingBar.rating = item.rating.toFloat()
 
             addToCartBtn.setOnClickListener {
@@ -83,6 +86,29 @@ class DetailsFragment : BaseFragment() {
                     numberItemTxt.text = item.numberInCart.toString()
                 }
             }
+
+            viewModel.fetchFavoriteStatus(item.title)
+            viewModel.itemFavStatus.observe(viewLifecycleOwner, Observer { isFavourite ->
+                favBtn.setImageDrawable(viewModel.getFavDrawable(requireContext(), isFavourite))
+            })
+
+            favBtn.setOnClickListener {
+                val currentStatus = viewModel.itemFavStatus.value ?: false
+                val newStatus = !currentStatus
+                viewModel.addFav(item.title, newStatus)
+            }
+
+        }
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Re-fetch or update item details when fragment is resumed
+        binding.apply {
+            val updatedDrawable = viewModel.getFavDrawable(requireContext(), item.isFav)
+            favBtn.setImageDrawable(updatedDrawable)
         }
     }
 

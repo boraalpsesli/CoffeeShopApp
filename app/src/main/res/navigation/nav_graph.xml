@@ -18,6 +18,7 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
 
+
     </fragment>
     <action
         android:id="@+id/toMainFragment"
@@ -51,6 +52,16 @@
     <action
         android:id="@+id/toCart"
         app:destination="@id/cartFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out" />
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.example.coffeeshopapp.scenes.FavouritesFragment"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" />
+    <action
+        android:id="@+id/toFavourites"
+        app:destination="@id/favouritesFragment"
         app:enterAnim="@android:anim/fade_in"
         app:exitAnim="@android:anim/fade_out" />
 

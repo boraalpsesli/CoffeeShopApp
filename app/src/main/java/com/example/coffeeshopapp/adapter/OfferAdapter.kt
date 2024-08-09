@@ -17,7 +17,6 @@ class OfferAdapter(private val items: List<ItemsModel>) :
             binding.apply {
                 titleTxt.text = item.title
                 priceTxt.text = "$${item.price}"
-
                 Glide.with(itemView.context)
                     .load(item.picUrl[0])
                     .into(pic)

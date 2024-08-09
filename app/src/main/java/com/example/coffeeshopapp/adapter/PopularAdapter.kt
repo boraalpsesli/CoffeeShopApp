@@ -29,7 +29,7 @@ class PopularAdapter(private val items: List<ItemsModel>) :
 
                 itemView.setOnClickListener {
                     val bundle = Bundle().apply {
-                        putParcelable("object", item)
+                        putSerializable("object", item)
                     }
                     itemView.findNavController().navigate(R.id.toDetails, bundle)
                 }

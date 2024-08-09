@@ -41,6 +41,9 @@ class MainFragment : BaseFragment() {
         binding.cartBtn.setOnClickListener {
             findNavController().navigate(CartFragmentDirections.toCart())
         }
+        binding.Favourites.setOnClickListener {
+            findNavController().navigate(FavouritesFragmentDirections.toFavourites())
+        }
     }
 
     private fun initCategory() {
